@@ -35,3 +35,7 @@ ATM there is no configuration, you can easily modify the output format at the en
 
 
 1. here an example http://ch00ftech.com/wp-content/uploads/2013/02/IMG_1777.jpg
+
+LICENSE
+---------
+This work is release under BEER-WARE LICENSE
