@@ -35,27 +35,29 @@ def id2digi_pn(prod_id):
 		url = u[0].a['href'].split('/')[-2]
 		return url
 	except Exception as e:
-		sys.stderr.write('error: analizing code: {} reason: {}\n'.format(prod_id, e))
+		sys.stderr.write('error: analizing code: {} reason: {}, u: {}\n'.format(prod_id, e, u))
 		return None
 
 def digikey2data(digi_pn):
 
 	data = None
 
-	if digi_pn is not None:
-		digi_url = "http://search.digikey.com/scripts/DkSearch/dksus.dll?Detail&name={}".format(digi_pn)
-		req2 = urllib2.Request(digi_url, headers={'User-Agent' : "electronic-parser"})
-		page2 = urllib2.urlopen(req2)
-		soup2 = BeautifulSoup(page2.read(), 'html.parser')
-		u = soup2.find_all('table', class_='product-details')
+	try:
+		if digi_pn is not None:
+			digi_url = "http://search.digikey.com/scripts/DkSearch/dksus.dll?Detail&name={}".format(digi_pn)
+			req2 = urllib2.Request(digi_url, headers={'User-Agent' : "electronic-parser"})
+			page2 = urllib2.urlopen(req2)
+			soup2 = BeautifulSoup(page2.read(), 'html.parser')
+			u = soup2.find_all('table', class_='product-details')
 
-		data = {
-			"digi_pn": digi_pn,
-			"manufacturer_pn": u[0].find_all('h1', itemprop="model")[0].contents[0].encode('utf-8'),
-			"description": u[0].find_all('td', itemprop="description")[0].contents[0].encode('utf-8')
-		}
-		return data
-	else:
+			data = {
+				"digi_pn": digi_pn,
+				"manufacturer_pn": u[0].find_all('h1', itemprop="model")[0].contents[0].encode('utf-8'),
+				"description": u[0].find_all('td', itemprop="description")[0].contents[0].encode('utf-8')
+			}
+			return data
+	except Exception as e:
+		sys.stderr.write('error: reading digikey page for {} reason: {}\n'.format(digi_pn, e))
 		return None
 
 
