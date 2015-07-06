@@ -63,13 +63,18 @@ def digikey2data(digi_pn):
 
 if __name__ == "__main__":
 	for line in sys.stdin:
+		d = None
 		# parse barcode 1786439000000040970571
 		sys.stderr.write('info: code readed: {}\n'.format(line))
 
-		prod_id = line[0:7]
-		qnt = line[8:16]
+		if len(line) == 23: # digikey code
+			prod_id = line[0:7]
+			qnt = line[8:16]
 
-		d = digikey2data(id2digi_pn(prod_id))
-		#print d
+			d = digikey2data(id2digi_pn(prod_id))
+		else:
+			sys.stderr.write('info: cannot parse code, no valid format : {}\n'.format(line))
+
+
 		if d is not None:
 			print "%s, %s, %d, %s, %s" % (prod_id, d['digi_pn'], int(qnt), d['manufacturer_pn'], d['description'])
