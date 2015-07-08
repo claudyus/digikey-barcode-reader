@@ -1,6 +1,9 @@
 Digikey barcode reader
 =========================
 
+.. image:: https://travis-ci.org/claudyus/digikey-barcode-reader.svg?branch=master
+    :target: https://travis-ci.org/claudyus/digikey-barcode-reader
+
 A python script to retrieve information about digikey components using bag barcode
 
 Usage
