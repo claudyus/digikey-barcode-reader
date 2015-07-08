@@ -1,4 +1,10 @@
 language: python
 
+before_script:
+  - pip install coveralls nose
+
 script:
   - make
+
+after_success:
+  coveralls
