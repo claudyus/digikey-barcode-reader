@@ -1,7 +1,7 @@
 Digikey barcode reader
 =========================
 
-This script is used to retrieve information from the web from the digikey label barcode.
+A python script to retrieve information about digikey components using bag barcode
 
 Usage
 -------
@@ -9,9 +9,15 @@ Usage
 Scan your digikey barcode using a barcode scanner and save it in a text file, the barcode
 should be saved one-per-line. See digi_example.txt for example
 
-Than pipe the scanned file to digi-reader.py::
+Than pipe the scanned file to digi-reader.py (linux)::
 
   cat digi_example.txt | python digi-reader.py >> digi_parts.csv
+
+
+Windows usage::
+
+  type digi_example.txt | python digi-reader.py >> digi_parts.csv
+
 
 This will output a CSV in the format::
 
