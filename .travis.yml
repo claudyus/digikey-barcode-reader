@@ -1,7 +1,9 @@
+sudo: false
+
 language: python
 
-before_script:
-  - pip install coveralls nose
+install:
+  - pip install coveralls flake8
 
 script:
   - make
