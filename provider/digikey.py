@@ -39,7 +39,8 @@ def digikey2data(digi_pn):
 			u = soup2.find_all('table', class_='product-details')
 
 			data = {
-				"digi_pn": digi_pn,
+				"provider": 'digikey',
+				"provider_pn": digi_pn,
 				"manufacturer_pn": u[0].find_all('h1', itemprop="model")[0].contents[0].encode('utf-8'),
 				"description": u[0].find_all('td', itemprop="description")[0].contents[0].encode('utf-8')
 			}
