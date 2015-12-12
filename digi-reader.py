@@ -17,6 +17,11 @@ from provider.mouser import *
 
 if __name__ == "__main__":
 	for line in sys.stdin:
+
+		# don't read commented lines
+		if line.strip()[0] == '#':
+			continue
+
 		d = None
 		# parse barcode 1786439000000040970571
 		sys.stderr.write('info: code readed: {}\n'.format(line))
@@ -29,10 +34,9 @@ if __name__ == "__main__":
 		elif '-ND' in line: # digikey part/number
 			d = digikey2data(line.strip())
 		elif '-' in line:	# mouser code
-			d = mouser2data(line)
+			d = mouser2data(line.strip())
 		else:
 			sys.stderr.write('info: cannot parse code, no valid format : {}\n'.format(line))
 
-
 		if d is not None:
-			print "%s, %s, %d, %s, %s" % (prod_id, d['digi_pn'], int(qnt), d['manufacturer_pn'], d['description'])
+			print "%s, %s, %s, %s" % (d['provider'], d['provider_pn'], d['manufacturer_pn'], d['description'])
