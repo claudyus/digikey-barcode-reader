@@ -3,28 +3,29 @@ Digikey barcode reader
 
 .. image:: https://travis-ci.org/claudyus/digikey-barcode-reader.svg?branch=master
     :target: https://travis-ci.org/claudyus/digikey-barcode-reader
+.. image:: https://coveralls.io/repos/claudyus/digikey-barcode-reader/badge.svg?branch=master&service=github
+  :target: https://coveralls.io/github/claudyus/digikey-barcode-reader?branch=master
 
-A python script to retrieve information about digikey components using bag barcode
+A python script to retrieve information about electronic components using bag barcode.
 
 Usage
 -------
 
-Scan your digikey barcode using a barcode scanner and save it in a text file, the barcode
-should be saved one-per-line. See digi_example.txt for example
+Scan your digikey/mouser part barcode using a barcode scanner and save it in a text file, the barcodes should be saved one-per-line. See test/test.txt for an input file example.
 
 Than pipe the scanned file to digi-reader.py (linux)::
 
-  cat digi_example.txt | python digi-reader.py >> digi_parts.csv
+  cat input_file.txt | python digi-reader.py >> output.csv
 
 
 Windows usage::
 
-  type digi_example.txt | python digi-reader.py >> digi_parts.csv
+  type input_file.txt | python digi-reader.py >> output.csv
 
 
 This will output a CSV in the format::
 
-  product_id, digikey_part_number, qnty, manufacter_part_number, description
+  provider, provider pn, manufacter pn, full description[, extra provider specific info]
 
 Background of this script
 ----------------------------
@@ -44,6 +45,10 @@ ATM there is no configuration, you can easily modify the output format at the en
 
 
 1. here an example http://ch00ftech.com/wp-content/uploads/2013/02/IMG_1777.jpg
+
+Extra
+---------
+I will be happy to accept any improvments.
 
 LICENSE
 ---------
