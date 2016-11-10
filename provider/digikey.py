@@ -36,7 +36,7 @@ def digikey2data(digi_pn):
 			req2 = urllib2.Request(digi_url, headers={'User-Agent' : "electronic-parser"})
 			page2 = urllib2.urlopen(req2)
 			soup2 = BeautifulSoup(page2.read(), 'html.parser')
-			u = soup2.find_all('table', class_='product-details')
+			u = soup2.find_all('table', id='product-details')
 
 			data = {
 				"provider": 'digikey',
